@@ -11,7 +11,7 @@ while (check_no > 1) {
     if (check_no %% div == 0) {
         check_no <- check_no / div
     } else {
-        div <- div + 1
+        div <- div + `if`(div == 2, 1, 2) ## Primes are only odd - skips the even checks
         while (!is.prime(div)){
             div <- div + 1
         }
