@@ -30,7 +30,7 @@ import_question <- function(q_no, extension = "R"){
     question <- gsub("\\$", "", question)
     
     ## Save
-    save_loc <- file.path(getwd(), "R", "Solution Scripts",
+    save_loc <- file.path(getwd(), "Solution Scripts",
                           paste0(sprintf("%03d", q_no), ".", extension)) 
     
     if (file.exists(save_loc)) {
