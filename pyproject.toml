@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "project-euler"
+version = "0.1.0"
+description = ""
+authors = ["Daniel van de Vorstenbosch"]
+readme = "README.md"
+packages = [{include = "Python"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^1.26.4"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.3"  # Linting, formatting
+poetry-plugin-sort = "^0.2.1"  # Organises deps in this file
+
+[tool.poetry.scripts]
+run = "Python.scripts.run_problem:run"
+gen = "Python.scripts.gen_problem:run"
+
+[tool.ruff]
+line-length = 100  # Cleaner code - a widely recommended adjustment from PEP8
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
