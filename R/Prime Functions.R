@@ -18,6 +18,13 @@ is.prime <- function(n) {
     return(T)
 }
 
+#' Extract list of prime factors for a number
+#' 
+#' This function takes a number `n` and returns a vector of all of its prime
+#' factors. When a factor appears multiple times (for example, 28 is divisible by 2 and 4) the
+#' prime will appear that many times
+#' 
+#' @param n The number to determine the number of prime divisors of
 get_prime_divisors <- function(n) {
     ## Recycles code from solution to Q10: create a prime sieve
     number_seq <- 1:n
