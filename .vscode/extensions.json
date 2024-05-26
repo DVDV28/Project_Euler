@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "tamasfe.even-better-toml",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "donjayamanne.python-environment-manager",
+        "reditorsupport.r",
+        "charliermarsh.ruff",
+        "rdebugger.r-debugger"
+    ]
+}
