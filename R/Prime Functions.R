@@ -25,23 +25,39 @@ is.prime <- function(n) {
 #' prime will appear that many times
 #' 
 #' @param n The number to determine the number of prime divisors of
-get_prime_divisors <- function(n) {
+#' @param count Whether the function should return the 
+get_prime_divisors <- function(n, count = F) {
     i <- 2
-    divisors <- numeric()
+    
+    if (!count) {
+        divisors <- numeric()
+    } else {
+        divisors <- 1
+        prime_count <- 0
+    }
+    
     while (T) {
         if (n %% i == 0) {
             n <- n / i
-            divisors <- c(divisors, i)
-        } else if (i == 2) {
-            i <- i + 1
+            if (!count) {
+                divisors <- c(divisors, i)
+            } else {
+                prime_count <- prime_count + 1
+            }
         } else {
-            i <- i + 2
-        }
-        
-        if (n == 1) {
-            break()
+            if (i == 2) {
+                i <- i + 1
+            } else {
+                i <- i + 2
+            }
+            if (count) {
+                divisors <- divisors * (prime_count + 1)
+                prime_count <- 0
+            }
+            
+            if (n == 1) {
+                return(divisors)
+            }
         }
     }
-    
-    return(divisors)
 }
