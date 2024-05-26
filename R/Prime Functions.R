@@ -25,38 +25,39 @@ is.prime <- function(n) {
 #' prime will appear that many times
 #' 
 #' @param n The number to determine the number of prime divisors of
-get_prime_divisors <- function(n) {
-    ## Recycles code from solution to Q10: create a prime sieve
-    number_seq <- 1:n
-    is_prime_seq <- rep(T, n)
+#' @param count Whether the function should return the 
+get_prime_divisors <- function(n, count = F) {
+    i <- 2
     
-    is_prime_seq[1] <- F
-    
-    div <- 2
-    while (div <= sqrt(n) & !is.na(div)) {
-        is_prime_seq[seq(div^2, n, by = div)] <- F ## squared, because the first instance is prime and the nth instance is handled elsewhere
-        
-        div <- number_seq[number_seq > div & is_prime_seq][1]
+    if (!count) {
+        divisors <- numeric()
+    } else {
+        divisors <- 1
+        prime_count <- 0
     }
     
-    primes <- number_seq[is_prime_seq]
-    powers <- rep(0, length(primes))
-    
-    i <- 1
-    while (i <= length(primes)) {
-        if (n %% primes[i] == 0) {
-            n <- n / primes[i]
-            powers[i] <- powers[i] + 1
+    while (T) {
+        if (n %% i == 0) {
+            n <- n / i
+            if (!count) {
+                divisors <- c(divisors, i)
+            } else {
+                prime_count <- prime_count + 1
+            }
         } else {
-            i <- i + 1
-        }
-        
-        if (n == 1) {
-            break()
+            if (i == 2) {
+                i <- i + 1
+            } else {
+                i <- i + 2
+            }
+            if (count) {
+                divisors <- divisors * (prime_count + 1)
+                prime_count <- 0
+            }
+            
+            if (n == 1) {
+                return(divisors)
+            }
         }
     }
-    
-    divisors <- unlist(mapply(rep, primes, powers))
-    
-    return(divisors)
 }

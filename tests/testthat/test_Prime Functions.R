@@ -16,7 +16,7 @@ test_that("is.prime table lookup",
 
 test_that("get prime divisors",
           {
-              expect_equal(get_prime_divisors(1), NULL)
+              expect_equal(get_prime_divisors(1), numeric())
               expect_equal(get_prime_divisors(2), 2)
               expect_equal(get_prime_divisors(3), 3)
               expect_equal(get_prime_divisors(4), c(2, 2))
