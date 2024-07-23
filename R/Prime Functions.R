@@ -61,3 +61,19 @@ get_prime_divisors <- function(n, count = F) {
         }
     }
 }
+
+create_prime_sieve <- function(cap) {
+    number_seq <- 1:cap
+    is_prime_seq <- rep(T, cap)
+    
+    is_prime_seq[1] <- F
+    
+    div <- 2
+    while (div <= sqrt(cap) & !is.na(div)) {
+        is_prime_seq[seq(div^2, cap, by = div)] <- F ## squared, because the first instance is prime and the nth instance is handled elsewhere
+        
+        div <- number_seq[number_seq > div & is_prime_seq][1]
+    }
+    
+    return(number_seq[is_prime_seq])
+}
